@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        div {text-align: center;}
+        </style>
+</head>
+<body>
+<div>
+<h2>Partner IFrame</h2>
+<button  id="button" onclick="onPress('success')">Send Post Message to DWC</button>
+</div>
+
+<script type='text/javascript'>
+    function getSessionId() {
+        var fragment = window.location.hash;
+        var sessionId = fragment.split('=').pop();
+        return sessionId;
+    }
+    window.addEventListener("message", onMessageReceived, false);
+    function onPress(statusCode) {
+        var body = {
+            sessionId: getSessionId(),
+            partnerConnection: {
+                name: "PartnerApp",
+                description: "Description of the Partner App"
+            },
+            status: {
+                code: statusCode
+            }
+        };
+        if(document.referrer){
+            window.parent.postMessage(body, document.referrer);
+        }
+    }
+    function onMessageReceived(event) {
+            if(event.data.sessionId === getSessionId()){
+                var requestMethod = event.data.requestMethod;
+                switch (requestMethod){
+                    // request response from partner    
+                    case "ConnectionCreated":
+                        var code = (event.data.connection.name.toUpperCase()==="GENERATE_ERROR")? "error": "success";
+                        var message = (event.data.connection.name.toUpperCase()==="GENERATE_ERROR")? "Error found, please try again later": "";
+                        var schemaDetails = event.data.connection;
+                        var responseMessage = {
+                            sessionId : event.data.sessionId,
+                            requestMethod: "ConnectionReceived",
+                            status: {
+                                code: code,
+                                message: message
+                            }
+                        };
+                        setTimeout(window.top.postMessage( responseMessage, event.origin), 1000);
+                        break;
+                }
+            }
+        }
+</script>
+
+</body>
+</html>
+© 2020 GitHub, Inc.
+Help
+Support
+API
+Training
+Blog
+About
