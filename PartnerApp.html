@@ -21,6 +21,7 @@
     function onPress(statusCode) {
         var body = {
             sessionId: getSessionId(),
+            requestMethod: "ConnectionSet",
             partnerConnection: {
                 name: "PartnerApp",
                 description: "Description of the Partner App"
