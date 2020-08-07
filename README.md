@@ -2,7 +2,7 @@
 You can study the PartnerApp sample content to understand the SAP Data Warehouse Cloud partner integration. The download contains an HTML file simulating an IFRAME that connects to the SAP Data Warehouse Cloud. It also describes the response expected by SAP Data Warehouse Cloud for validating the connections.
 
 # Download
-Download the ZIP file (PartnerApp.zip) from [release page] (https://github.wdf.sap.corp/I537933/PartnerApp). The ZIP file contains:
+Download the ZIP file (PartnerApp.zip) from [release page] (https://github.com/SylvainFrein/PartnerAp). The ZIP file contains:
  
 *	PartnerApp.html: an example of the API calls and responses to send to SAP Data Warehouse Cloud
 *	README (present file)
@@ -28,7 +28,7 @@ The following information need to be provided in SAP Data Warehouse Cloud for se
 
 #### Step 0: Start
 At first the customer gets redirected to the partner web site via the IFRAME URL. The "sessionId" is also sent to the partner via a hash parameter, it will be kept during the entire flow and checked by SAP Data Warehouse Cloud continously.  
-Example: https://github.wdf.sap.corp/pages/i537933/PartnerApp/PartnerApp.html?DWCVersion=1#sessionid=abcdefgh
+Example: https://sylvainfrein.github.io/PartnerApp/PartnerApp.html?DWCVersion=1#sessionid=abcdefgh
 
 The API version supported by the partner is also sent via the query string in the IFRAME URL.
 
